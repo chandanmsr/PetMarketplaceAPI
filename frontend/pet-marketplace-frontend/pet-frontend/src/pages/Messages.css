@@ -1,0 +1,79 @@
+.msg-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  height: calc(100vh - 64px);
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 780px) {
+  .msg-layout { grid-template-columns: 1fr; height: calc(100vh - 120px); }
+  .msg-list.hide-mobile { display: none; }
+  .msg-thread.hide-mobile { display: none; }
+}
+
+.msg-list {
+  border-right: 1px solid var(--line);
+  overflow-y: auto;
+}
+.msg-list-item {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+}
+.msg-list-item:hover { background: var(--surface-sunken); }
+.msg-list-item.active { background: var(--accent-soft); }
+.msg-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--surface-sunken);
+  object-fit: cover;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: var(--ink-soft); font-size: 0.9rem;
+}
+.msg-list-name { font-weight: 600; font-size: 0.9rem; display: flex; justify-content: space-between; gap: 8px; }
+.msg-list-preview { color: var(--ink-soft); font-size: 0.8rem; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.msg-list-pet { font-size: 0.72rem; color: var(--accent-ink); margin-top: 2px; }
+
+.msg-thread { display: flex; flex-direction: column; height: 100%; }
+.msg-thread-head {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.back-btn { display: none; }
+@media (max-width: 780px) { .back-btn { display: inline-flex; } }
+
+.msg-bubbles {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.bubble {
+  max-width: 70%;
+  padding: 9px 13px;
+  border-radius: 14px;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+.bubble-mine { align-self: flex-end; background: var(--accent); color: #fff; border-bottom-right-radius: 4px; }
+.bubble-theirs { align-self: flex-start; background: var(--surface-sunken); border-bottom-left-radius: 4px; }
+.bubble-time { font-size: 0.65rem; opacity: 0.7; margin-top: 3px; }
+
+.msg-composer {
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-top: 1px solid var(--line);
+}
+.msg-composer input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}

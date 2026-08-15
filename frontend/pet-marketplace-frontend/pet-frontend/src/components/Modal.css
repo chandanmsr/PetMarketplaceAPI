@@ -1,0 +1,38 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(35, 38, 31, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: var(--space-4);
+  animation: fadeIn 0.15s ease;
+}
+@keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+
+.modal-panel {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-md);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-5) 0;
+}
+
+.modal-close {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+}
+.modal-close:hover { background: var(--surface-sunken); }
+
+.modal-body { padding: var(--space-5); }

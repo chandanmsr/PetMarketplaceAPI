@@ -1,0 +1,324 @@
+/* ─────────────────────────────────────────────────────────
+   Both auth pages (Login + Register) use the same two-panel
+   layout. The outer wrapper is exactly one viewport tall so
+   neither page ever scrolls. The right form panel scrolls
+   internally only if the viewport is very short.
+───────────────────────────────────────────────────────── */
+
+/* Shared wrapper — full viewport, no outer scroll */
+.auth-page {
+  height: calc(100vh - 64px); /* subtract sticky navbar */
+  display: flex;
+  align-items: stretch;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.auth-page-wide {
+  padding: 0;
+}
+
+/* Two-column grid container */
+.auth-card-wrap {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  width: 100%;
+  max-width: 860px;
+  margin: auto;
+  height: 100%;
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* ── Left decorative panel ────────────────────────────── */
+.auth-side-panel {
+  background: var(--accent);
+  color: #fff;
+  padding: var(--space-7) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  overflow: hidden;
+}
+
+.auth-side-logo {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.auth-side-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.auth-side-body {
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.8);
+}
+
+.auth-side-perks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: auto;
+}
+
+.auth-side-perks li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.84rem;
+  color: rgba(255,255,255,0.9);
+  font-weight: 500;
+}
+
+.auth-perk-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.55);
+  flex-shrink: 0;
+}
+
+/* ── Right form panel ─────────────────────────────────── */
+.auth-form-panel {
+  border-radius: 0 !important;
+  border: none !important;
+  padding: var(--space-6) var(--space-6);
+  overflow-y: auto;        /* only this scrolls if content is tall */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Login: vertically centre the form content in the panel */
+.auth-form-panel--centered {
+  justify-content: center;
+}
+
+.auth-form-head {
+  margin-bottom: var(--space-4);
+}
+
+.auth-form-head h1 {
+  margin-bottom: 2px;
+}
+
+/* ── Role toggle ──────────────────────────────────────── */
+.auth-role-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.auth-role-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: var(--space-3) var(--space-2);
+  border: 2px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  text-align: center;
+}
+.auth-role-btn:hover { border-color: var(--ink-soft); }
+.auth-role-btn.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.auth-role-icon { font-size: 1.35rem; line-height: 1; }
+.auth-role-label {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.auth-role-sub {
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+}
+.auth-role-btn.active .auth-role-label { color: var(--accent-ink); }
+.auth-role-btn.active .auth-role-sub  { color: var(--accent); }
+
+/* ── Section dividers ─────────────────────────────────── */
+.auth-divider-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-soft);
+  margin-bottom: var(--space-2);
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+}
+
+.auth-optional {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.68rem;
+}
+
+/* ── Tighten field spacing inside auth forms only ─────── */
+.auth-form .field {
+  margin-bottom: var(--space-3);
+}
+
+/* ── Password field ───────────────────────────────────── */
+.auth-pass-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.auth-pass-wrap input {
+  width: 100%;
+  padding-right: 56px;
+}
+.auth-pass-toggle {
+  position: absolute;
+  right: 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.auth-pass-toggle:hover { text-decoration: underline; }
+
+/* ── Password strength bar ────────────────────────────── */
+.auth-pw-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: 5px;
+}
+.auth-pw-track {
+  flex: 1;
+  height: 3px;
+  background: var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.auth-pw-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.2s ease, background 0.2s ease;
+}
+.auth-pw-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  min-width: 48px;
+  text-align: right;
+}
+
+/* ── Submit button ────────────────────────────────────── */
+.auth-submit-btn {
+  margin-top: var(--space-3);
+  padding: 12px;
+  font-size: 0.92rem;
+}
+
+/* ── Terms line ───────────────────────────────────────── */
+.auth-terms {
+  margin-top: var(--space-3);
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ── Shared small helpers ─────────────────────────────── */
+.auth-sub {
+  color: var(--ink-soft);
+  display: block;
+  font-size: 0.88rem;
+  margin-bottom: 0;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: var(--space-4);
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 780px) {
+  .auth-page {
+    height: auto;
+    min-height: calc(100vh - 64px);
+    overflow: visible;
+  }
+  .auth-card-wrap {
+    grid-template-columns: 1fr;
+    border-radius: 0;
+    box-shadow: none;
+    height: auto;
+  }
+  .auth-side-panel {
+    padding: var(--space-5) var(--space-5);
+    gap: var(--space-3);
+  }
+  .auth-side-title { font-size: 1.35rem; }
+  .auth-side-perks { display: none; }
+  .auth-side-body  { font-size: 0.82rem; }
+  .auth-form-panel {
+    padding: var(--space-5) var(--space-4);
+    overflow-y: visible;
+  }
+  .auth-form-panel--centered {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-role-group { gap: var(--space-2); }
+}
+
+/* ── Keep legacy .auth-card (unused now, kept safe) ───── */
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  padding: var(--space-6);
+}
+.auth-card h1 { margin-bottom: 4px; }
+
+/* legacy role-toggle */
+.role-toggle {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+.role-toggle button {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  background: var(--surface);
+}
+.role-toggle button.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}

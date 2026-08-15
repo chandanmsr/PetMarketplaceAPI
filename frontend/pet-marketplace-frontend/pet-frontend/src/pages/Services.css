@@ -1,0 +1,27 @@
+.svc-tabs {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+  flex-wrap: wrap;
+}
+.svc-tab {
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: var(--surface);
+}
+.svc-tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+.svc-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: var(--space-4);
+  margin-bottom: var(--space-3);
+}
+.svc-name { font-weight: 600; margin-bottom: 2px; }
+.svc-address { color: var(--ink-soft); font-size: 0.82rem; max-width: 480px; }
+.svc-distance { font-size: 0.8rem; font-weight: 600; color: var(--accent-ink); white-space: nowrap; }

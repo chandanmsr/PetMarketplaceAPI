@@ -1,0 +1,84 @@
+/* height:100% makes the <Link> (grid child) fill its cell fully */
+.pet-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: box-shadow 0.18s ease, transform 0.18s ease;
+}
+.pet-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Fixed-ratio image slot — all cards show identical image height */
+.pet-card-image {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  background: var(--surface-sunken);
+  flex-shrink: 0;
+}
+.pet-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.pet-card-noimage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+}
+.pet-card-status {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.pet-card-fav {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+.pet-card:hover .pet-card-fav,
+.pet-card-fav:has(.fav-btn-active) {
+  opacity: 1;
+}
+
+/* Body stretches to fill remaining card height so all cards in a
+   row reach the same bottom edge regardless of text length */
+.pet-card-body {
+  flex: 1;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.pet-card-body h3 { font-size: 1.05rem; }
+.pet-card-price {
+  font-weight: 700;
+  color: var(--accent-ink);
+  font-family: var(--font-display);
+  white-space: nowrap;
+}
+.pet-card-meta {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+/* Footer is always pinned to the bottom of the card body */
+.pet-card-footer {
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: var(--space-2);
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}

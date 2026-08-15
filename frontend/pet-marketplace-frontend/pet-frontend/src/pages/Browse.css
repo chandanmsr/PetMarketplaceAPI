@@ -1,0 +1,79 @@
+.browse-hero {
+  padding: var(--space-7) 0 var(--space-5);
+}
+.browse-hero h1 { margin-bottom: 6px; }
+.browse-hero p { color: var(--ink-soft); }
+
+.filter-bar {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  flex-wrap: wrap;
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--space-5);
+}
+.filter-bar select,
+.filter-bar .locate-btn {
+  padding: 9px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.filter-bar .locate-btn.active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+.filter-bar .radius-label {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-location {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 1;
+  min-width: 200px;
+  max-width: 360px;
+}
+/* Give the autocomplete input the same pill look as the other filter controls */
+.filter-location .loc-wrap input {
+  padding: 9px 34px 9px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.filter-location .loc-dropdown {
+  border-radius: var(--radius-sm);
+}
+.filter-location .locate-btn {
+  flex-shrink: 0;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 0.95rem;
+  line-height: 1;
+}
+.filter-location .locate-btn.active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.pet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-auto-rows: 1fr;   /* every row is the same height */
+  gap: var(--space-5);
+  padding-bottom: var(--space-8);
+  align-items: stretch;
+}
